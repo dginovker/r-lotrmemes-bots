@@ -1,0 +1,5 @@
+__pycache__/
+praw.ini
+.idea/
+logs/
+venv/
