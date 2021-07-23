@@ -1,16 +1,19 @@
-# This is a sample Python script.
+import time
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+import praw
 
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+8 to toggle the breakpoint.
+smeagol = praw.Reddit("smeagol-bot", user_agent='smeagol lotrmemes quote bot')
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+def scan_comments():
+    try:
+        while True:
+            for comment in smeagol.subreddit("lotrmemes").stream.comments(skip_existing=True):
+                print(comment.body)
+    except Exception as e:
+        print("Exception caught: ")
+        print(e)
+        scan_comments()
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+
+scan_comments()
