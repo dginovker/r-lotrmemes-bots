@@ -4,19 +4,39 @@ import re
 import praw
 
 trigger_dictionary = {
-    ("hobbits"): ["Stupid, fat hobbit!"],
-    ("Po-ta-toes", "taters"): ["Whats taters, precious? What's taters, eh?"],
-    ("baggins", "bagginses"): ["SHIIIIIIRE! BAGGINS!"],
+    ("hobbits", ): ["Stupid, fat hobbit!"],
+    ("Po-ta-toes", "taters", ): ["Whats taters, precious? What's taters, eh?"],
+    ("baggins", "bagginses", ): ["SHIIIIIIRE! BAGGINS!"],
 }
+
+ignore_authors = {"smeagol-bot", }
 
 
 def find_word_in_text(text, word):
     """
+    Finds if a word is within a text
+
     :param text: The text to search
     :param word: Word to look for in text
     :return: True if the word appears as a word in the text, False otherwise
     """
-    return re.compile(r'\b({0})\b'.format(word), flags=re.IGNORECASE).search(text)
+    found = re.compile(r'\b({0})\b'.format(word), flags=re.IGNORECASE).search(text)
+    if found:
+        return True
+    return False
+
+
+def get_comment_reply(text):
+    """
+    Takes the text of a comment, determines which reply to use for it
+
+    :param text: Reddit comment text
+    :return: String containing comment to reply with, None if no comment is applicable
+    """
+    for triggers, responses in trigger_dictionary.items():  # For every case in trigger_dictionary
+        for trigger in triggers:  # For each string in the cases
+            if find_word_in_text(text, trigger):  # If the Reddit comment contains the string
+                return random.choice(responses)  # Return a random string that corresponds to the matched tuple
 
 
 def handle_comment(comment):
@@ -26,13 +46,16 @@ def handle_comment(comment):
 
     :param comment: PRAW comment object
     """
-    for triggers, responses in trigger_dictionary.items():
-        for trigger in triggers:
-            if find_word_in_text(comment.body, trigger):
-                response = random.choice(responses)
-                print(comment.author.name + " triggered " + trigger + ". Responding with [" + response + "]!")
-                comment.reply(response)
-                return  # Don't reply more than once per comment
+
+    if comment.author.name in ignore_authors:
+        return  # Don't reply to any comment made by someone in ignore_authors
+
+    reply = get_comment_reply(comment.body)
+    if reply is not None:
+        print(
+            comment.author.name + " triggered with [" + comment.body + "]. Responding with [" + reply + "]!")
+        comment.reply(reply)
+
     print(comment.body + " -- Had no triggers")
 
 
@@ -52,6 +75,6 @@ def scan_comments():
         print(e)
         scan_comments()
 
-# There's no Bagginses around here. They're all up in Hobbiton.
 
-scan_comments()
+if __name__ == '__main__':
+    scan_comments()
