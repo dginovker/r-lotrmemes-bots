@@ -1,5 +1,6 @@
 # Lotrmemes bots
 
+![](https://i.imgur.com/tk8gDq9.png)
 Extremely simple bots for your pleasure on /r/lotrmemes!
 
 ### Design
