@@ -58,7 +58,7 @@ def scan_comments(bot, trigger_dictionary):
     :param bot: PRAW Reddit instance of a bot account
     """
 
-    print("Starting " + bot.user.me() + "!")
+    print("Starting " + bot.user.me().name + "!")
     try:
         for comment in bot.subreddit("lotrmemes").stream.comments(skip_existing=True):
             handle_comment(comment, trigger_dictionary)

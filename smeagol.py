@@ -11,4 +11,4 @@ trigger_dictionary = {
 
 if __name__ == '__main__':
     smeagol = praw.Reddit("smeagol-bot", user_agent='Smeagol lotrmemes quote bot by /u/OsrsNeedsF2P')
-    scan_comments(smeagol)
+    scan_comments(smeagol, trigger_dictionary)
