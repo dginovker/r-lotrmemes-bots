@@ -4,9 +4,13 @@
 
 Extremely simple bots for your pleasure on /r/lotrmemes!
 
+### Request a feature
+
+Want to add quotes? Want a new character? Create an [issue](https://github.com/dginovker/r-lotrmemes-bots/issues) on Github or message me on [Reddit](https://www.reddit.com/user/OsrsNeedsF2P/)!
+
 ### Design
 
-These bots are extremely simple by design so anyone can run them. They use simple programming practices where possible and are available for modification per the [license](https://github.com/dginovker/r-lotrmemes-bots/blob/master/LICENSE) (license TL;DR is you must share the source code of your bot too!).
+These bots are extremely simple by design so anyone can run them. The [license](https://github.com/dginovker/r-lotrmemes-bots/blob/master/LICENSE) allows free use of the code is you likewise share the source code.
 
 ### Running
 
