@@ -19,4 +19,4 @@ That's it!
 
 ### Modifying the triggers & responses
 
-Edit the dictionary found on line 3 of main.py. Keep the same format!
+Edit the dictionary found at the top of the relevant bot file. Keep the same format!
