@@ -66,6 +66,6 @@ def scan_comments(bot, trigger_dictionary):
     except Exception as e:
         print("Exception caught: ")
         print(e)
-        scan_comments()
+        scan_comments(bot, trigger_dictionary)
 
 
