@@ -2,7 +2,7 @@
 
 ![](https://i.imgur.com/OmC1fEK.png)
 
-Extremely simple bots for your pleasure on /r/lotrmemes!
+Extremely simple bot that replies when some comment has a keyword!
 
 ### Request a feature
 
